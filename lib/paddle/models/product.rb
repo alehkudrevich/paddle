@@ -12,8 +12,9 @@ module Paddle
         Product.new(response.body["data"])
       end
 
-      def retrieve(id:)
-        response = Client.get_request("products/#{id}")
+      def retrieve(id:, extra: nil)
+        params = extra ? { include: extra } : {}
+        response = Client.get_request("products/#{id}", params: params)
         Product.new(response.body["data"])
       end
 
